@@ -22,8 +22,9 @@ type Options = {
 
 // authorization cookie set by a Cloudflare Access proxy
 const CF_AUTHORIZATION = getCookie("CF_Authorization");
+const UQ_AUTHORIZATION = getCookie("EAIT_WEB")
 // if the cookie is set, we must pass it with all ApiClient requests
-const CREDENTIALS = CF_AUTHORIZATION ? "same-origin" : "omit";
+const CREDENTIALS = (CF_AUTHORIZATION || UQ_AUTHORIZATION) ? "same-origin" : "omit";
 
 const fetchWithRetry = retry(fetch);
 
